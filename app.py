@@ -3,6 +3,7 @@ import streamlit as st
 import shap
 import matplotlib.pyplot as plt
 import pandas as pd
+import requests
 
 # URL to the raw xgb_model_new.pkl file in your GitHub repository
 url = "https://raw.githubusercontent.com/Arnob83/Bank-Loan-APP/main/xgb_model_new.pkl"
