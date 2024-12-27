@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # URL to the raw xgb_model_new.pkl file in your GitHub repository
-url = "https://raw.githubusercontent.com/Arnob83/D-A/main/xgb_model_new.pkl"
+url = "https://raw.githubusercontent.com/Arnob83/Bank-Loan-APP/main/xgb_model_new.pkl"
 
 # Download the xgb_model_new.pkl file and save it locally
 response = requests.get(url)
