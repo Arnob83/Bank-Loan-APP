@@ -106,10 +106,10 @@ def main():
     )
 
     # User inputs
-    Education_1 = st.selectbox('Education', ("Under_Graduate", "Graduate"))
-    ApplicantIncome = st.number_input("Applicant's Monthly Income", min_value=0.0)
-    CoapplicantIncome = st.number_input("Co-applicant's Monthly Income", min_value=0.0)
     Credit_History = st.selectbox("Credit History", ("Unclear Debts", "Clear Debts"))
+    Education_1 = st.selectbox('Education', ("Under_Graduate", "Graduate"))
+    ApplicantIncome = st.number_input("Applicant's yearly Income", min_value=0.0)
+    CoapplicantIncome = st.number_input("Co-applicant's yearly Income", min_value=0.0)
     Loan_Amount_Term = st.number_input("Loan Term (in months)", min_value=0.0)
 
     # Prediction
