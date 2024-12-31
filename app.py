@@ -17,20 +17,22 @@ with open("xgb_model_new.pkl", "wb") as file:
 with open("xgb_model_new.pkl", "rb") as pickle_in:
     classifier = pickle.load(pickle_in)
 
+
 @st.cache_data
-def prediction(Education_1, ApplicantIncome, CoapplicantIncome, Credit_History, Loan_Amount_Term):
+def prediction(Credit_History, Education_1, ApplicantIncome, CoapplicantIncome, Loan_Amount_Term):
     # Convert user input
     Education_1 = 0 if Education_1 == "Graduate" else 1
     Credit_History = 0 if Credit_History == "Unclear Debts" else 1
 
-    # Create input data in the expected order
+    # Create input data (column order doesn't matter here)
     input_data = pd.DataFrame(
-        [[Education_1, ApplicantIncome, CoapplicantIncome, Credit_History, Loan_Amount_Term]],
-        columns=["Education_1", "ApplicantIncome", "CoapplicantIncome", "Credit_History", "Loan_Amount_Term"]
+        [[Credit_History, Education_1, ApplicantIncome, CoapplicantIncome, Loan_Amount_Term]],
+        columns=["Credit_History", "Education_1", "ApplicantIncome", "CoapplicantIncome", "Loan_Amount_Term"]
     )
 
     # Ensure column order matches the classifier’s expectations
-    input_data = input_data[classifier.feature_names_in_]
+    expected_order = classifier.feature_names_in_
+    input_data = input_data[expected_order]  # Reorder columns programmatically
 
     # Model prediction (0 = Rejected, 1 = Approved)
     prediction = classifier.predict(input_data)
@@ -135,4 +137,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
