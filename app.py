@@ -17,7 +17,6 @@ with open("xgb_model_new.pkl", "wb") as file:
 with open("xgb_model_new.pkl", "rb") as pickle_in:
     classifier = pickle.load(pickle_in)
 
-
 @st.cache_data
 def prediction(Credit_History, Education_1, ApplicantIncome, CoapplicantIncome, Loan_Amount_Term):
     # Convert user input
@@ -116,10 +115,10 @@ def main():
     # Prediction
     if st.button("Predict"):
         result, input_data = prediction(
+            Credit_History,  # Correct order
             Education_1,
             ApplicantIncome,
             CoapplicantIncome,
-            Credit_History,
             Loan_Amount_Term
         )
 
@@ -137,3 +136,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
