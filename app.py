@@ -42,12 +42,12 @@ def explain_prediction(input_data, final_result):
     Analyze features and provide a detailed explanation of the prediction,
     along with a bar chart for SHAP values.
     """
-    # Initialize SHAP explainer
-    explainer = shap.Explainer(classifier)
-    shap_values = explainer(input_data)
+    # Initialize SHAP explainer specifically for XGBoost
+    explainer = shap.TreeExplainer(classifier)
+    shap_values = explainer.shap_values(input_data)
 
     # Extract SHAP values for the input data
-    shap_values_for_input = shap_values.values[0]  # SHAP values for the first row of input_data
+    shap_values_for_input = shap_values[0]  # SHAP values for the first row of input_data
 
     # Prepare feature importance data
     feature_names = input_data.columns
@@ -135,3 +135,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
